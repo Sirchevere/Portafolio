@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misael Yahir Flores Arispuro | DevOps Engineer & Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #141925;
+            --bg-tertiary: #1e2534;
+            --accent-primary: #00ff88;
+            --accent-secondary: #00ccff;
+            --text-primary: #e8edf4;
+            --text-secondary: #8b95a8;
+            --border-color: #2a3344;
+            --shadow: 0 20px 60px rgba(0, 255, 136, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 204, 255, 0.05) 0%, transparent 50%);
+            animation: backgroundPulse 8s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes backgroundPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header/Hero Section */
+        header {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .glitch-text {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .subtitle {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 1s ease-out 0.2s backwards;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s backwards;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: 2px solid var(--accent-primary);
+            background: transparent;
+            color: var(--accent-primary);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover {
+            color: var(--bg-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+        }
+
+        .btn:hover::before {
+            left: 0;
+        }
+
+        .btn-secondary {
+            border-color: var(--accent-secondary);
+            color: var(--accent-secondary);
+        }
+
+        .btn-secondary::before {
+            background: var(--accent-secondary);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 0;
+            position: relative;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight {
+            color: var(--accent-primary);
+            font-weight: 600;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -3.5rem;
+            top: 2rem;
+            width: 1rem;
+            height: 1rem;
+            background: var(--accent-primary);
+            border: 3px solid var(--bg-primary);
+            border-radius: 50%;
+        }
+
+        .timeline-item:hover {
+            transform: translateX(10px);
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow);
+        }
+
+        .job-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            font-size: 1.2rem;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .date {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .job-description {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .job-description ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .job-description li {
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .job-description li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow);
+            transform: translateY(-5px);
+        }
+
+        .skill-category h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category h3::before {
+            content: '//';
+            color: var(--accent-secondary);
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-primary);
+            box-shadow: var(--shadow);
+            transform: translateY(-5px);
+        }
+
+        .project-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-badge {
+            padding: 0.3rem 0.8rem;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--accent-primary);
+            color: var(--accent-primary);
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .project-link:hover {
+            color: var(--accent-primary);
+            transform: translateX(5px);
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .contact-link:hover::before {
+            left: 100%;
+        }
+
+        .contact-link:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            margin-top: 6rem;
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .footer-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline {
+                padding-left: 2rem;
+            }
+
+            .timeline-item::before {
+                left: -2.5rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-link {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Corgi Game Styles */
+        .corgi-container {
+            position: fixed;
+            width: 80px;
+            height: 60px;
+            z-index: 9999;
+            cursor: pointer;
+            transition: none;
+            pointer-events: auto;
+        }
+
+        .corgi {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .corgi-body {
+            width: 50px;
+            height: 35px;
+            background: linear-gradient(135deg, #f4a460, #d2691e);
+            border-radius: 20px 20px 15px 15px;
+            position: absolute;
+            bottom: 12px;
+            left: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .corgi-head {
+            width: 30px;
+            height: 28px;
+            background: linear-gradient(135deg, #f4a460, #d2691e);
+            border-radius: 15px 15px 10px 10px;
+            position: absolute;
+            bottom: 25px;
+            left: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .corgi-ear {
+            width: 12px;
+            height: 15px;
+            background: linear-gradient(135deg, #d2691e, #8b4513);
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            top: -5px;
+        }
+
+        .corgi-ear.left {
+            left: 2px;
+            transform: rotate(-15deg);
+        }
+
+        .corgi-ear.right {
+            right: 2px;
+            transform: rotate(15deg);
+        }
+
+        .corgi-eye {
+            width: 4px;
+            height: 4px;
+            background: #000;
+            border-radius: 50%;
+            position: absolute;
+            top: 10px;
+        }
+
+        .corgi-eye.left {
+            left: 7px;
+        }
+
+        .corgi-eye.right {
+            right: 7px;
+        }
+
+        .corgi-nose {
+            width: 6px;
+            height: 5px;
+            background: #000;
+            border-radius: 50% 50% 50% 50%;
+            position: absolute;
+            bottom: 5px;
+            left: 12px;
+        }
+
+        .corgi-leg {
+            width: 8px;
+            height: 15px;
+            background: linear-gradient(180deg, #d2691e, #f4a460);
+            border-radius: 0 0 4px 4px;
+            position: absolute;
+            bottom: 0;
+        }
+
+        .corgi-leg.front-left {
+            left: 20px;
+            animation: walkFrontLeft 0.6s infinite;
+        }
+
+        .corgi-leg.front-right {
+            left: 32px;
+            animation: walkFrontRight 0.6s infinite;
+        }
+
+        .corgi-leg.back-left {
+            left: 44px;
+            animation: walkBackLeft 0.6s infinite;
+        }
+
+        .corgi-leg.back-right {
+            left: 56px;
+            animation: walkBackRight 0.6s infinite;
+        }
+
+        .corgi-tail {
+            width: 20px;
+            height: 8px;
+            background: linear-gradient(90deg, #d2691e, #f4a460);
+            border-radius: 0 10px 10px 0;
+            position: absolute;
+            bottom: 22px;
+            right: -5px;
+            transform-origin: left center;
+            animation: wagTail 0.5s infinite;
+        }
+
+        @keyframes walkFrontLeft {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes walkFrontRight {
+            0%, 100% { transform: translateY(-8px); }
+            50% { transform: translateY(0); }
+        }
+
+        @keyframes walkBackLeft {
+            0%, 100% { transform: translateY(-8px); }
+            50% { transform: translateY(0); }
+        }
+
+        @keyframes walkBackRight {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes wagTail {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        .corgi-flip {
+            transform: scaleX(-1);
+        }
+
+        /* Score display */
+        .corgi-score {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--accent-primary);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            z-index: 10000;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: var(--accent-primary);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            display: none;
+        }
+
+        .corgi-score.show {
+            display: block;
+            animation: scorePopIn 0.3s ease-out;
+        }
+
+        @keyframes scorePopIn {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Click effect */
+        .click-effect {
+            position: fixed;
+            width: 30px;
+            height: 30px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            animation: clickPulse 0.6s ease-out;
+        }
+
+        @keyframes clickPulse {
+            0% {
+                transform: scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(2);
+                opacity: 0;
+            }
+        }
+
+        /* Treat animation */
+        .treat {
+            position: fixed;
+            font-size: 1.5rem;
+            z-index: 9997;
+            animation: treatFloat 1s ease-out;
+            pointer-events: none;
+        }
+
+        @keyframes treatFloat {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) scale(1.5);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Corgi Game Elements -->
+    <div class="corgi-score" id="corgiScore">
+        🦴 Pets: <span id="petCount">0</span>
+    </div>
+
+    <div class="corgi-container" id="corgi">
+        <div class="corgi">
+            <div class="corgi-head">
+                <div class="corgi-ear left"></div>
+                <div class="corgi-ear right"></div>
+                <div class="corgi-eye left"></div>
+                <div class="corgi-eye right"></div>
+                <div class="corgi-nose"></div>
+            </div>
+            <div class="corgi-body">
+                <div class="corgi-tail"></div>
+            </div>
+            <div class="corgi-leg front-left"></div>
+            <div class="corgi-leg front-right"></div>
+            <div class="corgi-leg back-left"></div>
+            <div class="corgi-leg back-right"></div>
+        </div>
+    </div>
+
+    <header>
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="glitch-text">MISAEL YAHIR<br>FLORES ARISPURO</h1>
+                <p class="subtitle">Software Engineer | Backend Maintenance Specialist | Critical Systems Expert</p>
+                <div class="cta-buttons">
+                    <a href="#contact" class="btn">Get In Touch</a>
+                    <a href="https://github.com/Sirchevere" target="_blank" class="btn btn-secondary">View GitHub</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text fade-in">
+                    <p><span class="highlight">Bilingual Software Engineer</span> (English C1) with <span class="highlight">4+ years of experience</span> across the complete Software Development Life Cycle (SDLC). Specialized in <span class="highlight">operational stability, refactoring, and maintenance of Backend architectures</span> using Java/Spring Boot for high-demand sectors including Banking (Fintech) and Global Travel.</p>
+                    <p>Expert in <span class="highlight">root cause diagnosis, dependency management (Maven)</span>, and production environment configuration on Linux. My technical approach focuses on <span class="highlight">code maintainability, system observability</span>, and ensuring <span class="highlight">operational continuity in critical systems</span>.</p>
+                    <p>I've successfully delivered technical solutions for world-class clients like <span class="highlight">Citibanamex</span> and <span class="highlight">Travelport</span>, managing complex troubleshooting scenarios, dependency conflicts ("Dependency Hell"), and implementing logging strategies that reduced Mean Time To Repair (MTTR).</p>
+                    <p>Proven ability to work under <span class="highlight">Agile methodologies (Scrum/SAFe)</span> and collaborate effectively with internationally distributed teams. My strength lies in transforming legacy systems into maintainable, well-documented, and production-ready solutions.</p>
+                </div>
+                <div class="stats-grid fade-in">
+                    <div class="stat-card">
+                        <span class="stat-number">4+</span>
+                        <span class="stat-label">Years in SDLC</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Agile Certifications</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">15+</span>
+                        <span class="stat-label">Core Technologies</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">C1</span>
+                        <span class="stat-label">English Level</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <h3 class="job-title">Software Engineer & Technical Consultant</h3>
+                    <p class="company">Wipro - Global IT Consultancy</p>
+                    <p class="date">2022 - 2024 | Guadalajara, Jalisco, Mexico (Remote)</p>
+                    <div class="job-description">
+                        <p><strong>Role Overview:</strong> Responsible for operational continuity and technical evolution of backend services for world-class clients, requiring high precision for corrective and evolutionary maintenance in production systems.</p>
+                        
+                        <p><strong>Core Responsibilities & Technical Achievements:</strong></p>
+                        <ul>
+                            <li>Executed deep code analysis of legacy systems to identify technical debt and performed critical module refactoring, improving readability, maintainability, and performance</li>
+                            <li>Managed advanced Maven lifecycle and artifact repositories, resolving dependency conflicts ("Dependency Hell") and standardizing versions for clean builds and successful deployments</li>
+                            <li>Implemented comprehensive logging strategies for transaction traceability, performing forensic log analysis on Linux servers to identify complex bugs and runtime exceptions, reducing MTTR</li>
+                            <li>Administered Environment Variables and system parameters across Development, QA, and Production servers, ensuring configuration consistency to prevent deployment failures</li>
+                            <li>Executed deployment procedures for patches and new features, verifying service integrity post-deployment through smoke tests and system health monitoring</li>
+                        </ul>
+                        
+                        <p><strong>Key Projects:</strong></p>
+                        <ul>
+                            <li><strong>Citibanamex (Banking/Fintech):</strong> Ensured compliance with banking security regulations in code, managing secure integrations and technical documentation (Swagger) for APIs</li>
+                            <li><strong>Travelport (Global Travel):</strong> Optimized string processing algorithms for airport operations, ensuring interoperability with third-party systems like Trivago</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <h3 class="job-title">Software Engineer</h3>
+                    <p class="company">GAeroSpace - Aerospace/Industrial Sector</p>
+                    <p class="date">2021 | Guaymas, Sonora, Mexico</p>
+                    <div class="job-description">
+                        <p><strong>Role Overview:</strong> Technical leadership in developing software solutions for quality assurance in aerospace manufacturing.</p>
+                        <ul>
+                            <li>Designed and developed a Digital Quality Log System, eliminating manual records and reducing human errors in production line</li>
+                            <li>Implemented validation modules ensuring strict compliance with aerospace industry audit standards</li>
+                            <li>Integrated solution into existing infrastructure, ensuring compatibility with legacy hardware and systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <h3 class="job-title">Full Stack Developer & IT Administrator</h3>
+                    <p class="company">Veterinary SonayPet</p>
+                    <p class="date">2020 - 2021 | Empalme, Sonora, Mexico</p>
+                    <div class="job-description">
+                        <p><strong>Role Overview:</strong> Comprehensive business process digitalization through custom software development.</p>
+                        <ul>
+                            <li>Led complete development cycle (from requirements gathering to deployment) of a custom CRM and inventory management system</li>
+                            <li>Designed and normalized relational database (SQL) ensuring transactional integrity for sales and inventory operations</li>
+                            <li>Configured local networks and computing equipment to support new software operations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category fade-in">
+                    <h3>Core Languages</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Java 8/11/17 (Expert)</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">C# (.NET Core)</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python (Scripting)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Backend & Frameworks</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Spring Boot</span>
+                        <span class="skill-tag">Spring MVC</span>
+                        <span class="skill-tag">Hibernate (JPA)</span>
+                        <span class="skill-tag">RESTful APIs</span>
+                        <span class="skill-tag">Microservices Architecture</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Build & Dependency Management</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Apache Maven (Advanced)</span>
+                        <span class="skill-tag">Dependency Resolution</span>
+                        <span class="skill-tag">Artifact Management</span>
+                        <span class="skill-tag">Build Lifecycle</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>DevOps & CI/CD</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker (Containers)</span>
+                        <span class="skill-tag">Git (GitFlow)</span>
+                        <span class="skill-tag">Jenkins (CI/CD Basics)</span>
+                        <span class="skill-tag">Jira (Incident Management)</span>
+                        <span class="skill-tag">Confluence</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Operating Systems & Servers</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux (RedHat/Ubuntu)</span>
+                        <span class="skill-tag">Bash Scripting</span>
+                        <span class="skill-tag">Process Management</span>
+                        <span class="skill-tag">Environment Variables</span>
+                        <span class="skill-tag">Log Analysis</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Databases</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Oracle SQL</span>
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">Database Design</span>
+                        <span class="skill-tag">Query Optimization</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Development Tools & APIs</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">IntelliJ IDEA</span>
+                        <span class="skill-tag">VS Code</span>
+                        <span class="skill-tag">Eclipse</span>
+                        <span class="skill-tag">Postman</span>
+                        <span class="skill-tag">Swagger/OpenAPI</span>
+                    </div>
+                </div>
+
+                <div class="skill-category fade-in">
+                    <h3>Methodologies & Soft Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Scrum Master Certified</span>
+                        <span class="skill-tag">Agile SAFe Practitioner</span>
+                        <span class="skill-tag">English C1 (Business & Technical)</span>
+                        <span class="skill-tag">Troubleshooting & Debugging</span>
+                        <span class="skill-tag">Root Cause Analysis</span>
+                        <span class="skill-tag">Code Refactoring</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education & Certifications</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item fade-in">
+                    <h3 class="job-title">Bachelor of Science in Software Engineering</h3>
+                    <p class="company">ITSON (Instituto Tecnológico de Sonora)</p>
+                    <p class="date">2017 - 2021 | Guaymas, Sonora, Mexico</p>
+                    <div class="job-description">
+                        <ul>
+                            <li>GPA: 4.0 (Outstanding Academic Performance)</li>
+                            <li>Specialized in Software Development, Network Systems, and Embedded Software</li>
+                            <li>Completed comprehensive coursework in SDLC, Database Design, and System Architecture</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-item fade-in">
+                    <h3 class="job-title">Professional Certifications</h3>
+                    <div class="job-description" style="margin-top: 1rem;">
+                        <ul>
+                            <li><strong>Scrum Master Certified (SMC)</strong> - ScrumStudy: Expertise in Agile project management and team facilitation</li>
+                            <li><strong>Agile SAFe Practitioner:</strong> Advanced knowledge in Scaled Agile Framework for enterprise-level implementations</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card fade-in">
+                    <h3 class="project-title">SonayPet CRM</h3>
+                    <p class="project-description">
+                        Administrative application for veterinary clinic with complete inventory and sales management system. Includes client management, appointment scheduling, and detailed reporting.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Spring</span>
+                        <span class="tech-badge">SQL</span>
+                    </div>
+                    <a href="https://github.com/Sirchevere/SonayPet" target="_blank" class="project-link">
+                        View on GitHub →
+                    </a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">GAeroSpace Quality Log</h3>
+                    <p class="project-description">
+                        Quality management system for aviation industry adhering to strict industry standards. Features comprehensive logging, traceability, and compliance reporting.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">Spring Boot</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">GAeroSpace Quality System</h3>
+                    <p class="project-description">
+                        Digital Quality Log System for aerospace manufacturing. Architected solution that eliminated manual records and reduced human errors in production line. Implemented validation modules ensuring strict compliance with aerospace industry audit standards and integrated with legacy hardware infrastructure.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Java</span>
+                        <span class="tech-badge">System Design</span>
+                        <span class="tech-badge">Quality Assurance</span>
+                        <span class="tech-badge">Enterprise Integration</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">Travelport Backend Services</h3>
+                    <p class="project-description">
+                        Enterprise-level backend services for travel industry operations. Optimized string processing algorithms for airport codes and booking systems, handling complex parsing and ensuring interoperability with third-party systems. Managed production deployments and reduced system MTTR through advanced logging strategies.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Java/Spring Boot</span>
+                        <span class="tech-badge">Microservices</span>
+                        <span class="tech-badge">REST API</span>
+                        <span class="tech-badge">Maven</span>
+                        <span class="tech-badge">Linux</span>
+                    </div>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">JavaScript Essentials</h3>
+                    <p class="project-description">
+                        Collection of JavaScript projects and exercises demonstrating core concepts and modern ES6+ features. Educational resource for JavaScript development.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">ES6+</span>
+                        <span class="tech-badge">Node.js</span>
+                    </div>
+                    <a href="https://github.com/Sirchevere/javaScriptEssential" target="_blank" class="project-link">
+                        View on GitHub →
+                    </a>
+                </div>
+
+                <div class="project-card fade-in">
+                    <h3 class="project-title">More Projects</h3>
+                    <p class="project-description">
+                        Explore additional projects including university coursework, open source contributions, and experimental prototypes on my GitHub profile.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-badge">Various</span>
+                    </div>
+                    <a href="https://github.com/Sirchevere?tab=repositories" target="_blank" class="project-link">
+                        View All Repositories →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+            </div>
+            <div class="contact-content fade-in">
+                <p class="contact-text">
+                    I'm always interested in challenging opportunities involving backend architecture, system maintenance, and critical infrastructure. 
+                    If you're looking for a software engineer who excels at troubleshooting complex production issues, refactoring legacy code, 
+                    or ensuring operational continuity in mission-critical systems, let's connect!
+                </p>
+                <div class="contact-links">
+                    <a href="mailto:misael_arispuro@hotmail.com" class="contact-link">
+                        <span class="contact-icon">✉</span>
+                        <span>misael_arispuro@hotmail.com</span>
+                    </a>
+                    <a href="https://github.com/Sirchevere" target="_blank" class="contact-link">
+                        <span class="contact-icon">⚡</span>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://linkedin.com/in/Sirchevere" target="_blank" class="contact-link">
+                        <span class="contact-icon">💼</span>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Misael Yahir Flores Arispuro. Built with passion and code.</p>
+            <div class="footer-links">
+                <a href="#about" class="footer-link">About</a>
+                <a href="#experience" class="footer-link">Experience</a>
+                <a href="#skills" class="footer-link">Skills</a>
+                <a href="#education" class="footer-link">Education</a>
+                <a href="#projects" class="footer-link">Projects</a>
+                <a href="#contact" class="footer-link">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ===== CORGI GAME LOGIC =====
+        const corgi = document.getElementById('corgi');
+        const corgiScore = document.getElementById('corgiScore');
+        const petCount = document.getElementById('petCount');
+        
+        let pets = 0;
+        let corgiX = 0;
+        let corgiY = 0;
+        let targetX = 0;
+        let targetY = 0;
+        let speed = 2;
+        let edge = 'top'; // top, right, bottom, left
+        let direction = 1; // 1 for forward, -1 for backward
+        let isFlipped = false;
+
+        // Initialize corgi position
+        function initCorgi() {
+            const startX = Math.random() * (window.innerWidth - 100);
+            corgiX = startX;
+            corgiY = 0;
+            targetX = startX;
+            targetY = 0;
+            updateCorgiPosition();
+            corgiScore.classList.add('show');
+        }
+
+        // Update corgi position
+        function updateCorgiPosition() {
+            corgi.style.left = corgiX + 'px';
+            corgi.style.top = corgiY + 'px';
+        }
+
+        // Calculate next target on the edge
+        function getNextEdgeTarget() {
+            const margin = 50;
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+
+            switch(edge) {
+                case 'top':
+                    targetX += direction * 100;
+                    if (targetX > w - margin) {
+                        targetX = w - margin;
+                        targetY = margin;
+                        edge = 'right';
+                        direction = 1;
+                        flipCorgi(false);
+                    } else if (targetX < margin) {
+                        targetX = margin;
+                        targetY = margin;
+                        edge = 'left';
+                        direction = 1;
+                        flipCorgi(true);
+                    }
+                    targetY = margin;
+                    break;
+
+                case 'right':
+                    targetY += direction * 100;
+                    if (targetY > h - margin - 100) {
+                        targetY = h - margin - 100;
+                        targetX = w - margin;
+                        edge = 'bottom';
+                        direction = -1;
+                        flipCorgi(true);
+                    } else if (targetY < margin) {
+                        targetY = margin;
+                        targetX = w - margin;
+                        edge = 'top';
+                        direction = -1;
+                        flipCorgi(true);
+                    }
+                    targetX = w - margin;
+                    break;
+
+                case 'bottom':
+                    targetX += direction * 100;
+                    if (targetX < margin) {
+                        targetX = margin;
+                        targetY = h - margin - 100;
+                        edge = 'left';
+                        direction = -1;
+                        flipCorgi(false);
+                    } else if (targetX > w - margin) {
+                        targetX = w - margin;
+                        targetY = h - margin - 100;
+                        edge = 'right';
+                        direction = -1;
+                        flipCorgi(false);
+                    }
+                    targetY = h - margin - 100;
+                    break;
+
+                case 'left':
+                    targetY += direction * 100;
+                    if (targetY < margin) {
+                        targetY = margin;
+                        targetX = margin;
+                        edge = 'top';
+                        direction = 1;
+                        flipCorgi(false);
+                    } else if (targetY > h - margin - 100) {
+                        targetY = h - margin - 100;
+                        targetX = margin;
+                        edge = 'bottom';
+                        direction = 1;
+                        flipCorgi(true);
+                    }
+                    targetX = margin;
+                    break;
+            }
+        }
+
+        // Flip corgi sprite
+        function flipCorgi(flip) {
+            if (flip !== isFlipped) {
+                isFlipped = flip;
+                const corgiDiv = corgi.querySelector('.corgi');
+                if (flip) {
+                    corgiDiv.classList.add('corgi-flip');
+                } else {
+                    corgiDiv.classList.remove('corgi-flip');
+                }
+            }
+        }
+
+        // Move corgi towards target
+        function moveCorgi() {
+            const dx = targetX - corgiX;
+            const dy = targetY - corgiY;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+
+            if (distance < speed) {
+                corgiX = targetX;
+                corgiY = targetY;
+                getNextEdgeTarget();
+            } else {
+                corgiX += (dx / distance) * speed;
+                corgiY += (dy / distance) * speed;
+            }
+
+            updateCorgiPosition();
+        }
+
+        // Animation loop
+        function animate() {
+            moveCorgi();
+            requestAnimationFrame(animate);
+        }
+
+        // Click effect
+        function createClickEffect(x, y) {
+            const effect = document.createElement('div');
+            effect.className = 'click-effect';
+            effect.style.left = (x - 15) + 'px';
+            effect.style.top = (y - 15) + 'px';
+            document.body.appendChild(effect);
+            setTimeout(() => effect.remove(), 600);
+        }
+
+        // Treat animation
+        function createTreat(x, y) {
+            const treats = ['🦴', '🥩', '🍖', '🌭', '🥓'];
+            const treat = document.createElement('div');
+            treat.className = 'treat';
+            treat.textContent = treats[Math.floor(Math.random() * treats.length)];
+            treat.style.left = x + 'px';
+            treat.style.top = y + 'px';
+            document.body.appendChild(treat);
+            setTimeout(() => treat.remove(), 1000);
+        }
+
+        // Pet the corgi
+        corgi.addEventListener('click', (e) => {
+            pets++;
+            petCount.textContent = pets;
+            
+            // Create effects
+            createClickEffect(e.pageX, e.pageY);
+            createTreat(e.pageX, e.pageY);
+            
+            // Speed boost
+            speed = Math.min(speed + 0.2, 5);
+            
+            // Animate score
+            corgiScore.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                corgiScore.style.transform = 'scale(1)';
+            }, 200);
+
+            // Special message at milestones
+            if (pets === 10) {
+                alert('🎉 Good job! The corgi is happy! 10 pets!');
+            } else if (pets === 25) {
+                alert('⭐ Amazing! The corgi loves you! 25 pets!');
+            } else if (pets === 50) {
+                alert('👑 Legendary! You are the corgi master! 50 pets!');
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            const w = window.innerWidth;
+            const h = window.innerHeight;
+            
+            // Keep corgi in bounds
+            if (corgiX > w - 100) corgiX = w - 100;
+            if (corgiY > h - 100) corgiY = h - 100;
+            
+            updateCorgiPosition();
+            getNextEdgeTarget();
+        });
+
+        // Start the game
+        initCorgi();
+        getNextEdgeTarget();
+        animate();
+    </script>
+</body>
+</html>
